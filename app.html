@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStudio - Photography Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f1e8;
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #f5f1e8;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d2d2d;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #2d2d2d;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8b6f47;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: #2d2d2d;
+        }
+
+        .hero-content p {
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #4a4a4a;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #c9b8a8 0%, #d4c4b4 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #8b6f47;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+
+        .about h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            font-family: 'Arial', sans-serif;
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .about strong {
+            font-weight: bold;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: #f5f1e8;
+        }
+
+        .services h2 {
+            font-size: 48px;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #a8b8c9 0%, #b4c4d4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #5a6f8b;
+        }
+
+        .service-card:nth-child(2) .service-image {
+            background: linear-gradient(135deg, #c9c4b8 0%, #d4d0c4 100%);
+            color: #8b7f6f;
+        }
+
+        .service-card:nth-child(3) .service-image {
+            background: linear-gradient(135deg, #a8a8a8 0%, #b4b4b4 100%);
+            color: #6f6f6f;
+        }
+
+        .service-info {
+            padding: 25px;
+        }
+
+        .service-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Book Section */
+        .book {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+
+        .book .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .book h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .book-content p {
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            color: #4a4a4a;
+        }
+
+        .cta-button {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            padding: 18px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .cta-button:hover {
+            background-color: #4a4a4a;
+            transform: scale(1.05);
+        }
+
+        /* About Page */
+        .about-page {
+            padding: 80px 0;
+            background-color: #ffffff;
+            min-height: 60vh;
+        }
+
+        .about-page h1 {
+            font-size: 56px;
+            margin-bottom: 40px;
+        }
+
+        .about-page h3 {
+            font-size: 32px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .about-page p {
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+        }
+
+        /* Page transitions */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .book .container {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">LocalStudio</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="scrollToSection('services')">Services</a></li>
+                <li><a href="#" onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Homepage for a Small Photography Studio</h1>
+                    <p>I created a demo website for a fictional photography business to practice layout techniques, image optimization, and call-to-action structure.</p>
+                </div>
+                <div class="hero-image">📷</div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2>About</h2>
+                <p>Welcome to <strong>LocalStudio</strong>, a small photography studio dedicated to capturing your most memorable moments. We create timeless portraits, headshots, and event photos.</p>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="container">
+                <h2>Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-image">👤</div>
+                        <div class="service-info">
+                            <h3>Portrait Photography</h3>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image">🎉</div>
+                        <div class="service-info">
+                            <h3>Event Photography</h3>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image">💼</div>
+                        <div class="service-info">
+                            <h3>Headshot Photography</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="book" id="contact">
+            <div class="container">
+                <div class="book-content">
+                    <h2>Book a Session</h2>
+                    <p>Ready to capture some memories?<br>Contact us to schedule a session.</p>
+                </div>
+                <button class="cta-button" onclick="alert('Thank you for your interest! Please email us at hello@localstudio.com')">Get in Touch</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="about-page">
+            <div class="container">
+                <h1>About LocalStudio</h1>
+                <p>LocalStudio was founded with a simple mission: to capture life's precious moments with authenticity and artistry. Our small, dedicated team of photographers brings years of experience and a genuine passion for visual storytelling.</p>
+                
+                <h3>Our Story</h3>
+                <p>What started as a passion project in a small downtown loft has grown into a thriving photography studio serving clients throughout the community. We believe that every photo should tell a story, and every session should be a memorable experience.</p>
+                
+                <h3>Our Approach</h3>
+                <p>We combine technical excellence with a personal touch. Whether it's a corporate headshot, a family portrait, or coverage of your special event, we take the time to understand your vision and bring it to life through our lens.</p>
+                
+                <h3>Why Choose Us</h3>
+                <p>• Professional quality with a personal touch<br>
+                • Flexible scheduling and location options<br>
+                • Quick turnaround on edited photos<br>
+                • Competitive pricing for all budgets<br>
+                • A portfolio that speaks for itself</p>
+                
+                <p style="margin-top: 40px;">Ready to work with us? <a href="#" onclick="showPage('home'); scrollToSection('contact'); return false;" style="color: #8b6f47; text-decoration: underline;">Get in touch</a> to schedule your session today.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 LocalStudio Photography. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function scrollToSection(sectionId) {
+            showPage('home');
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
